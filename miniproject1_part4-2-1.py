@@ -36,8 +36,10 @@ def get_model_id_gdrive(model_type):
         word_index_id = "13qMXs3-oB9C6kfSRMwbAtzda9xuAUtt8"
         embeddings_id = "1-RXcfBvWyE-Av3ZHLcyJVsps0RYRRr_2"
     elif model_type == "50d":
-        embeddings_id = "1DBaVpJsitQ1qxtUvV1Kz7ThDc3az16kZ"
-        word_index_id = "1rB4ksHyHZ9skes-fJHMa2Z8J1Qa7awQ9"
+        #embeddings_id = "1DBaVpJsitQ1qxtUvV1Kz7ThDc3az16kZ"
+        embeddings_id = "1ytHiAUtoL0GUzO5yKVdHCFZZ0T_C1FjL"
+        # word_index_id = "1rB4ksHyHZ9skes-fJHMa2Z8J1Qa7awQ9"
+        word_index_id = "1kNbE4RIDW9vDuw8In1rDP7Zk3FSJI-dm"
     elif model_type == "100d":
         word_index_id = "1-oWV0LqG3fmrozRZ7WB1jzeTJHRUI3mq"
         embeddings_id = "1SRHfX130_6Znz7zbdfqboKosz-PfNvNp"
