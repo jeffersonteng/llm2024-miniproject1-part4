@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import math
 
 
-# Compute Cosine Similarity
+# 1/20 @ 10:41PM: We are ready to compute this function
 def cosine_similarity(x, y):
     """
     Exponentiated cosine similarity
@@ -152,6 +152,7 @@ def update_category_embeddings(embedings_metadata):
     get_category_embeddings(embeddings_metadata)
 
 
+# TODO: Ready to start implementing this function
 def get_sorted_cosine_similarity(embeddings_metadata):
     """
     Get sorted cosine similarity between input sentence and categories
@@ -374,6 +375,8 @@ if st.session_state.text_search:
     print(sorted_cosine_sim_transformer)
     # print(sorted_distilbert)
     # Altair Chart for all models
+    # 1/20 @ 10:41PM: This line will throw an error. This is because 
+    # sorted_cosine_sim_transformer is empty. We haven't implemented line 364
     plot_alatirchart(
         {
             "glove_" + str(model_type): sorted_cosine_sim_glove,
