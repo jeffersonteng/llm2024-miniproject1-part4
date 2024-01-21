@@ -354,17 +354,13 @@ if st.session_state.text_search:
         "model_type": model_type,
     }
     with st.spinner("Obtaining Cosine similarity for Glove..."):
-        sorted_cosine_sim_glove = get_sorted_cosine_similarity(
-            st.session_state.text_search, embeddings_metadata
-        )
+        sorted_cosine_sim_glove = get_sorted_cosine_similarity(embeddings_metadata)
 
     # Sentence transformer embeddings
     print("Sentence Transformer Embedding")
     embeddings_metadata = {"embedding_model": "transformers", "model_name": ""}
     with st.spinner("Obtaining Cosine similarity for 384d sentence transformer..."):
-        sorted_cosine_sim_transformer = get_sorted_cosine_similarity(
-            st.session_state.text_search, embeddings_metadata
-        )
+        sorted_cosine_sim_transformer = get_sorted_cosine_similarity(embeddings_metadata)
 
     # Results and Plot Pie Chart for Glove
     print("Categories are: ", st.session_state.categories)
