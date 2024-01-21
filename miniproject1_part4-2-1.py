@@ -18,9 +18,8 @@ def cosine_similarity(x, y):
     3. Return exponentiated cosine similarity
     (20 pts)
     """
-    ##################################
-    ### TODO: Add code here ##########
-    ##################################
+    cosine_sim = np.dot(x, y) / (la.norm(x) * la.norm(y))
+    return np.exp(cosine_sim)
     pass
     
 
