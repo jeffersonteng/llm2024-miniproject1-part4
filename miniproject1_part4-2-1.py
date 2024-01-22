@@ -176,10 +176,10 @@ def get_sorted_cosine_similarity(embeddings_metadata):
                                                             word_index_dict,
                                                             embeddings, model_type)
         
-        ##########################################
-        ## TODO: Get embeddings for categories ###
-        ##########################################
-
+        for category in categories:
+            ce = get_glove_embeddings(category, word_index_dict, embeddings, model_type)
+            cosine_sim[category] = cosine_similarity(ce, input_embedding)
+        return dict(sorted(cosine_sim.items(), key=lambda item: item[1]))
     else:
         model_name = embeddings_metadata["model_name"]
         if not "cat_embed_" + model_name in st.session_state:
