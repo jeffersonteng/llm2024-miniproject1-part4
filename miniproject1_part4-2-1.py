@@ -119,9 +119,6 @@ def averaged_glove_embeddings_gdrive(sentence, word_index_dict, embeddings, mode
     5. Return averaged embeddings
     (30 pts)
     """
-    ##################################
-    ##### TODO: Add code here ########
-    ##################################
     embedding = np.array(np.zeros(int(model_type.split("d")[0])))
     words = sentence.split()
     for word in words:
@@ -179,9 +176,11 @@ def get_sorted_cosine_similarity(embeddings_metadata):
         for cat_idx, category in enumerate(categories):
             ce = get_glove_embeddings(category, word_index_dict, embeddings, model_type)
             cs_list.append((cat_idx, cosine_similarity(ce, input_embedding)))
-        cosine_sim = {i: t for i, t in enumerate(sorted(cs_list, key=lambda x: x[1], reverse=True))}
     else:
         model_name = embeddings_metadata["model_name"]
+        if not model_name:
+            model_name = "all-MiniLM-L6-v2"
+
         if not "cat_embed_" + model_name in st.session_state:
             get_category_embeddings(embeddings_metadata)
 
@@ -192,13 +191,13 @@ def get_sorted_cosine_similarity(embeddings_metadata):
             input_embedding = get_sentence_transformer_embeddings(st.session_state.text_search, model_name=model_name)
         else:
             input_embedding = get_sentence_transformer_embeddings(st.session_state.text_search)
-        for index in range(len(categories)):
-            pass
-            ##########################################
-            # TODO: Compute cosine similarity between input sentence and categories
-            # TODO: Update category embeddings if category not found  
-            ##########################################
 
+        cs_list = []
+        for cat_idx, category in enumerate(categories):
+            ce = get_sentence_transformer_embeddings(category, model_name)
+            cs_list.append((cat_idx, cosine_similarity(ce, input_embedding)))
+        
+    cosine_sim = {i: t for i, t in enumerate(sorted(cs_list, key=lambda x: x[1], reverse=True))}
     return cosine_sim
 
 
@@ -361,7 +360,7 @@ if st.session_state.text_search:
 
     # Sentence transformer embeddings
     print("Sentence Transformer Embedding")
-    embeddings_metadata = {"embedding_model": "transformers", "model_name": ""}
+    embeddings_metadata = {"embedding_model": "transformers", "model_name": "all-MiniLM-L6-v2"}
     with st.spinner("Obtaining Cosine similarity for 384d sentence transformer..."):
         sorted_cosine_sim_transformer = get_sorted_cosine_similarity(embeddings_metadata)
 
@@ -382,7 +381,7 @@ if st.session_state.text_search:
     plot_alatirchart(
         {
             "glove_" + str(model_type): sorted_cosine_sim_glove,
-            # "sentence_transformer_384": sorted_cosine_sim_transformer,
+            "sentence_transformer_384": sorted_cosine_sim_transformer,
         }
     )
     # "distilbert_512": sorted_distilbert})
