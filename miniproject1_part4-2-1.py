@@ -218,7 +218,6 @@ def plot_piechart(sorted_cosine_scores_items):
 
 
 def plot_piechart_helper(sorted_cosine_scores_items):
-    # Sunday night: This function is expecting a different format
     sorted_cosine_scores = np.array(
         [
             sorted_cosine_scores_items[index][1]
@@ -234,7 +233,7 @@ def plot_piechart_helper(sorted_cosine_scores_items):
     my_explode = np.zeros(len(categories_sorted))
     my_explode[0] = 0.2
     if len(categories_sorted) == 3:
-        my_explode[1] = 0.1  # explode this by 0.2
+        my_explode[1] = 0.2  # explode this by 0.2
     elif len(categories_sorted) > 3:
         my_explode[2] = 0.05
     ax.pie(
