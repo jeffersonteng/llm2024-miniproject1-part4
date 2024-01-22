@@ -175,11 +175,11 @@ def get_sorted_cosine_similarity(embeddings_metadata):
         input_embedding = averaged_glove_embeddings_gdrive(st.session_state.text_search,
                                                             word_index_dict,
                                                             embeddings, model_type)
-        
-        for category in categories:
+        cs_list = []
+        for cat_idx, category in enumerate(categories):
             ce = get_glove_embeddings(category, word_index_dict, embeddings, model_type)
-            cosine_sim[category] = cosine_similarity(ce, input_embedding)
-        return dict(sorted(cosine_sim.items(), key=lambda item: item[1]))
+            cs_list.append((cat_idx, cosine_similarity(ce, input_embedding)))
+        cosine_sim = {i: t for i, t in enumerate(sorted(cs_list, key=lambda x: x[1], reverse=True))}
     else:
         model_name = embeddings_metadata["model_name"]
         if not "cat_embed_" + model_name in st.session_state:
@@ -199,7 +199,7 @@ def get_sorted_cosine_similarity(embeddings_metadata):
             # TODO: Update category embeddings if category not found  
             ##########################################
 
-    return 
+    return cosine_sim
 
 
 def plot_piechart(sorted_cosine_scores_items):
@@ -219,6 +219,7 @@ def plot_piechart(sorted_cosine_scores_items):
 
 
 def plot_piechart_helper(sorted_cosine_scores_items):
+    # Sunday night: This function is expecting a different format
     sorted_cosine_scores = np.array(
         [
             sorted_cosine_scores_items[index][1]
@@ -381,7 +382,7 @@ if st.session_state.text_search:
     plot_alatirchart(
         {
             "glove_" + str(model_type): sorted_cosine_sim_glove,
-            "sentence_transformer_384": sorted_cosine_sim_transformer,
+            # "sentence_transformer_384": sorted_cosine_sim_transformer,
         }
     )
     # "distilbert_512": sorted_distilbert})
