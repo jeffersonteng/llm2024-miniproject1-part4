@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 import math
 
 
-# 1/20 @ 10:41PM: We are ready to compute this function
 def cosine_similarity(x, y):
     """
     Exponentiated cosine similarity
@@ -20,8 +19,6 @@ def cosine_similarity(x, y):
     """
     cosine_sim = np.dot(x, y) / (la.norm(x) * la.norm(y))
     return np.exp(cosine_sim)
-    pass
-    
 
 # Function to Load Glove Embeddings
 def load_glove_embeddings(glove_path="Data/embeddings.pkl"):
@@ -112,7 +109,7 @@ def get_glove_embeddings(word, word_index_dict, embeddings, model_type):
         return np.zeros(int(model_type.split("d")[0]))
 
 
-def averaged_glove_embeddings_gdrive(sentence, word_index_dict, embeddings, model_type=50):
+def averaged_glove_embeddings_gdrive(sentence, word_index_dict, embeddings, model_type='50d'):
     """
     Get averaged glove embeddings for a sentence
     1. Split sentence into words
@@ -122,11 +119,15 @@ def averaged_glove_embeddings_gdrive(sentence, word_index_dict, embeddings, mode
     5. Return averaged embeddings
     (30 pts)
     """
-    embedding = np.zeros(int(model_type.split("d")[0]))
     ##################################
     ##### TODO: Add code here ########
     ##################################
-
+    embedding = np.array(np.zeros(int(model_type.split("d")[0])))
+    words = sentence.split()
+    for word in words:
+        word_embedding = np.array(get_glove_embeddings(word, word_index_dict, embeddings, model_type))
+        embedding += word_embedding
+    return embedding / len(words)
 
 def get_category_embeddings(embeddings_metadata):
     """
