@@ -33,7 +33,9 @@ def get_model_id_gdrive(model_type):
         word_index_id = "11FZoZzwtH-psAmOoWQEhVrHZqgtcZOro"
         embeddings_id = "192iDps6prDXJ5zuH82VWYN9vTCJbbNb1"
     elif model_type == "50d":
+        #embeddings_id = "1DBaVpJsitQ1qxtUvV1Kz7ThDc3az16kZ"
         embeddings_id = "1ytHiAUtoL0GUzO5yKVdHCFZZ0T_C1FjL"
+        # word_index_id = "1rB4ksHyHZ9skes-fJHMa2Z8J1Qa7awQ9"
         word_index_id = "1kNbE4RIDW9vDuw8In1rDP7Zk3FSJI-dm"
     elif model_type == "100d":
         word_index_id = "1-oWV0LqG3fmrozRZ7WB1jzeTJHRUI3mq"
@@ -274,7 +276,7 @@ def plot_piecharts(sorted_cosine_scores_models):
     st.pyplot(fig)
 
 
-def plot_alatirchart(sorted_cosine_scores_models):
+def plot_altairchart(sorted_cosine_scores_models):
     models = list(sorted_cosine_scores_models.keys())
     tabs = st.tabs(models)
     figs = {}
@@ -294,6 +296,23 @@ GloVe is an unsupervised learning algorithm for obtaining vector representations
 2 billion tweets with vocabulary size of 1.2 million. Download from [Stanford NLP](http://nlp.stanford.edu/data/glove.twitter.27B.zip). 
 
 Jeffrey Pennington, Richard Socher, and Christopher D. Manning. 2014. *GloVe: Global Vectors for Word Representation*.
+
+We use [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) as the sentence transformer model. It maps sentences and paragraphs to a 384 dimensional dense vector space.
+"""
+)
+st.sidebar.markdown(
+"""
+I implemented this project as part of [EE596A: LLMs: From Transformers to GPT | Winter 2024] (https://bytesizeml.github.io/llm2024/assessments.html).
+
+The app takes in a list of categories and an input string. Using three different models (GloVe 25d, GloVe 50d, and all-MiniLM-L6-v2), we generate embeddings between each category and the input string.
+
+We then sort the exponentiated cosine similarities of the resulting embedding pairs and plot them with Altair.
+
+Jefferson Teng
+January 23, 2024
+
+
+Testing what this looks like
 """
 )
 
@@ -374,7 +393,7 @@ if st.session_state.text_search:
     # Altair Chart for all models
     # 1/20 @ 10:41PM: This line will throw an error. This is because 
     # sorted_cosine_sim_transformer is empty. We haven't implemented line 364
-    plot_alatirchart(
+    plot_altairchart(
         {
             "glove_" + str(model_type): sorted_cosine_sim_glove,
             "sentence_transformer_384": sorted_cosine_sim_transformer,
