@@ -1,3 +1,4 @@
+streamlit
 sentence_transformers
 matplotlib
 gdown
