@@ -150,7 +150,6 @@ def update_category_embeddings(embedings_metadata):
     get_category_embeddings(embeddings_metadata)
 
 
-# TODO: Ready to start implementing this function
 def get_sorted_cosine_similarity(embeddings_metadata):
     """
     Get sorted cosine similarity between input sentence and categories
