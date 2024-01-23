@@ -289,34 +289,28 @@ def plot_altairchart(sorted_cosine_scores_models):
 
 
 ### Text Search ###
-st.sidebar.title("GloVe Twitter")
+model_type = st.sidebar.selectbox("Choose the model", ("25d", "50d"), index=1)
+st.sidebar.subheader("Models")
 st.sidebar.markdown(
     """
-GloVe is an unsupervised learning algorithm for obtaining vector representations for words. Pretrained on 
-2 billion tweets with vocabulary size of 1.2 million. Download from [Stanford NLP](http://nlp.stanford.edu/data/glove.twitter.27B.zip). 
+[GloVe Twitter](http://nlp.stanford.edu/data/glove.twitter.27B.zip) as the GloVE model. These were trained with 2 billion tweets with vocabulary size of 1.2 million.
 
-Jeffrey Pennington, Richard Socher, and Christopher D. Manning. 2014. *GloVe: Global Vectors for Word Representation*.
-
-We use [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) as the sentence transformer model. It maps sentences and paragraphs to a 384 dimensional dense vector space.
+[all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) as the sentence transformer model. It maps sentences and paragraphs to a 384 dimensional dense vector space.
 """
 )
+st.sidebar.subheader("Implementation Notes")
 st.sidebar.markdown(
 """
-I implemented this project as part of [EE596A: LLMs: From Transformers to GPT | Winter 2024] (https://bytesizeml.github.io/llm2024/assessments.html).
+I completed this project as part of [EE596A: LLMs: From Transformers to GPT](https://bytesizeml.github.io/llm2024/assessments.html).
 
 The app takes in a list of categories and an input string. Using three different models (GloVe 25d, GloVe 50d, and all-MiniLM-L6-v2), we generate embeddings between each category and the input string.
 
 We then sort the exponentiated cosine similarities of the resulting embedding pairs and plot them with Altair.
 
-Jefferson Teng
-January 23, 2024
-
-
-Testing what this looks like
+_Jefferson Teng (1/23/24)_
 """
 )
 
-model_type = st.sidebar.selectbox("Choose the model", ("25d", "50d"), index=1)
 
 
 st.title("Search Based Retrieval Demo")
