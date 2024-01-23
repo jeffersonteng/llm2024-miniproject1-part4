@@ -30,12 +30,10 @@ def load_glove_embeddings(glove_path="Data/embeddings.pkl"):
 
 def get_model_id_gdrive(model_type):
     if model_type == "25d":
-        word_index_id = "13qMXs3-oB9C6kfSRMwbAtzda9xuAUtt8"
-        embeddings_id = "1-RXcfBvWyE-Av3ZHLcyJVsps0RYRRr_2"
+        word_index_id = "11FZoZzwtH-psAmOoWQEhVrHZqgtcZOro"
+        embeddings_id = "192iDps6prDXJ5zuH82VWYN9vTCJbbNb1"
     elif model_type == "50d":
-        #embeddings_id = "1DBaVpJsitQ1qxtUvV1Kz7ThDc3az16kZ"
         embeddings_id = "1ytHiAUtoL0GUzO5yKVdHCFZZ0T_C1FjL"
-        # word_index_id = "1rB4ksHyHZ9skes-fJHMa2Z8J1Qa7awQ9"
         word_index_id = "1kNbE4RIDW9vDuw8In1rDP7Zk3FSJI-dm"
     elif model_type == "100d":
         word_index_id = "1-oWV0LqG3fmrozRZ7WB1jzeTJHRUI3mq"
