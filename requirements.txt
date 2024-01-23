@@ -1,4 +1,6 @@
 streamlit
+numpy
+pickleshare
+gdown
 sentence_transformers
 matplotlib
-gdown
