@@ -1,4 +1,4 @@
-Useful Stuff:
+Useful Stuff (for part 4):
 - Streamlit tutorial (scroll to bottom): https://docs.streamlit.io/get-started/tutorials/create-an-app
 - you need to run `pip3 install sentence_transformers` and everything else in requirements.txt
 - debugging Streamlit apps in VSCode: https://stackoverflow.com/a/64922850
